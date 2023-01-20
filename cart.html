@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>ProperTies</title>
+    <!-- Bootstrap -->
+    <link href="css/bootstrap-4.4.1.css" rel="stylesheet">
+  </head>
+  <body>
+  <style>
+  #shopping-cart {
+	margin: 1.5em 0;
+}
+.shopping-cart {
+	border: 1px solid #ddd;
+	border-collapse: collapse;
+	border-spacing: 0;
+	width: 100%;
+	table-layout: fixed;
+}
+
+.shopping-cart th {
+	font-size: 1.3em;
+	padding: 0.3em;
+	width: 22.3%;
+	border: 1px solid #ddd;
+	text-transform: uppercase;
+}
+
+.shopping-cart td {
+	padding: 0.3em;
+	width: 22.3%;
+	border: 1px solid #ddd;
+}
+
+.shopping-cart tr:nth-child(even) {
+	background: #000000;
+}
+.pdelete {
+	color: red;
+	text-decoration: none;
+	font-size: 20px;
+	width:30px;
+	text-align: center;
+	border: none;
+	
+}
+
+
+
+
+
+#shopping-cart-actions {
+	margin: 1.5em 0;
+	padding: 0;
+	list-style: none;
+	text-align: center;
+}
+
+#shopping-cart-actions li {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+
+
+  </style>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <div class="container">
+        <a class="navbar-brand" href="#">ProperTies</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item ">
+              <a class="nav-link" href="index.html"><img src = "images/homeicon.png" width ='20' height = '20'></img> </a>
+            </li>
+            <li class="nav-item active">
+              <a class="nav-link" href="cart.html"><img src = "images/cart.png" width ='20' height = '20'></img><span class="sr-only">(current)</span></a>
+            </li>
+			   <li class="nav-item">
+              <a class="nav-link" href=""><img src = "images/cons.jpeg" width ='30' height = '30'></img></a>
+            </li>            
+          
+          </ul>
+          <form class="form-inline my-2 my-lg-0">
+            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+          </form>
+        </div>
+      </div>
+    </nav>
+    </div>
+<div class="container">
+	<div id="">
+			<h1> Cart</h1>
+			<form id="shopping-cart" action="cart.html" method="post">
+				<table class="shopping-cart">
+				  <thead>
+					<tr>
+						<th scope="col">Title</th>
+						<th scope="col">Price</th>
+						<th scope="col" >Qty</th>
+						<th scope="col"  >Total</th>
+						<th scope="col" id="pdelete"></th>
+					</tr>
+				  </thead>
+				  <tbody id="tbody">
+				  
+				  </tbody>
+				</table>
+				<p id="sub-total">
+					<strong>Sub Total</strong>: <span id="stotal"></span>
+				</p>
+				<ul id="shopping-cart-actions">
+					<li>
+						<input type="submit" name="update" id="update-cart" class="btn btn-primary" value="Update Cart" />
+					</li>
+					<li>
+						<input type="submit" name="delete" id="empty-cart" class="btn btn-primary" onclick="clearCart()"value="Empty Cart" />
+					</li>
+					<li>
+						<a href="index.html" class="btn btn-primary">Continue Shopping</a>
+					</li>
+					
+				</ul>
+			</form>
+		</div>
+	
+</div>
+    <hr>
+    <div class="container text-white bg-dark p-4">
+      <div class="row">
+        <div class="col-6 col-md-8 col-lg-7">
+          <div class="row text-center">
+            <div class="col-sm-6 col-md-4 col-lg-4 col-12">
+              <ul class="list-unstyled">
+                <li class="btn-link"> <a>Link anchor</a> </li>
+                <li class="btn-link"> <a>Link anchor</a> </li>
+               
+              </ul>
+            </div>
+            <div class="col-sm-6 col-md-4 col-12 col-lg-7">
+              <ul class="list-unstyled">
+                <li class="btn-link"> <a>Link anchor</a> </li>
+                <li class="btn-link"> <a>Link anchor</a> </li>
+                
+                
+              </ul>
+            </div>
+           
+          </div>
+        </div>
+        <div class="col-md-4 col-lg-5 col-6">
+          <address>
+            <strong>ProperTies, Inc.</strong><br>
+            
+          </address>
+          <address>
+            <strong>Full Name</strong><br>
+            <a href="github.com/tonyrex99">Ode christopher</a>
+          </address>
+        </div>
+      </div>
+    </div>
+    <footer class="text-center">
+      <div class="container">
+        <div class="row">
+          <div class="col-12">
+            <p>Copyright © Chris. All rights reserved.</p>
+          </div>
+        </div>
+      </div>
+    </footer>
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="js/jquery-3.4.1.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="js/popper.min.js"></script>
+    <script src="js/bootstrap-4.4.1.js"></script>
+		<script>
+		let cart = {};
+if (localStorage.getItem("cart")) {
+    cart = JSON.parse(localStorage.getItem("cart"));
+}
+
+let tbody = document.getElementById("tbody");
+var sub_total =0;
+{
+for (let id in cart) {
+    let item = cart[id];
+
+    let tr = document.createElement('tr')
+
+    let title_td = document.createElement('td')
+    title_td.textContent = item.title
+    tr.appendChild(title_td)
+
+
+    let price_td = document.createElement("td");
+    price_td.textContent = item.price;
+    tr.appendChild(price_td);
+
+    let qty_td = document.createElement("td");
+    qty_td.textContent = item.qty;
+    tr.appendChild(qty_td);
+
+let total_td = document.createElement("td");
+    total_td.textContent = item.total;
+    tr.appendChild(total_td);
+
+let delete_td = document.createElement("td");
+    delete_td.textContent = "x";
+	delete_td.dataset.id=id;
+
+  let typ = document.createAttribute("class");
+  typ.value = "pdelete";
+  delete_td.attributes.setNamedItem(typ);
+    tr.appendChild(delete_td);
+
+    tbody.appendChild(tr)
+sub_total += item.total;
+}
+}
+
+function clearCart(){
+
+let cart ={};
+localStorage.setItem("cart", JSON.stringify(cart));
+}
+
+ function deleteitem(self){
+ let value = self.target.dataset.id;
+ delete cart[value];
+ console.log(value);
+ console.log(cart);
+ localStorage.setItem("cart", JSON.stringify(cart));
+ console.log(value);
+ location.reload();
+ }
+  $(".pdelete").click(deleteitem);
+console.log(sub_total);
+$("#stotal").text(sub_total);
+
+		</script>
+		
+		<script>
+		
+		</script>
+  </body>
+</html>
